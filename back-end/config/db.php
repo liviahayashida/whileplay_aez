@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
 $dbname = 'while_play';
-$username = 'root'; // altere se necessário
-$password = '';     // altere se necessário
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

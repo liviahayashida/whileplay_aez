@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - While Play</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
       background: url('../public/MEDIA/imagens/fundo_login.png') no-repeat left center fixed;
       background-size: cover;
@@ -22,9 +16,7 @@
       align-items: center;
       justify-content: flex-start;
       padding-left: 30%;
-      cursor: pointer;
     }
-
     .login-container {
       background: #707070;
       padding: 2rem;
@@ -33,40 +25,24 @@
       max-width: 450px;
       text-align: center;
       box-shadow: 0 4px 10px rgba(251, 251, 251, 0.2);
-      cursor: auto;
     }
-
-    .login-container h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #000000;
-    }
-
-    .login-container p {
-      color: #000000;
-      margin-bottom: 2rem;
-    }
-
+    .login-container h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #000; }
+    .login-container p { color: #000; margin-bottom: 2rem; }
     .login-container input {
       width: 100%;
       padding: 0.8rem;
       margin-bottom: 1rem;
-      border: 1px solid #ffffff;
+      border: 1px solid #fff;
       border-radius: 5px;
-      background: #ffffff;
-      color: #000000;
+      background: #fff;
+      color: #000;
       font-size: 1rem;
     }
-
-    .login-container input::placeholder {
-      color: #666666;
-    }
-
     .login-container button {
       width: 100%;
       padding: 0.8rem;
       background: linear-gradient(45deg, #060662, #062b50);
-      color: #ffffff;
+      color: #fff;
       border: none;
       border-radius: 5px;
       font-size: 1rem;
@@ -74,56 +50,22 @@
       cursor: pointer;
       transition: transform 0.3s;
     }
-
-    .login-container button:hover {
-      transform: translateY(-2px);
-    }
-
-    .login-container a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.9rem;
-      display: block;
-      margin-top: 1rem;
-    }
-
-    .login-container a:hover {
-      text-decoration: underline;
-    }
-
-    .footer {
-      margin-top: 2rem;
-      color: #cccccc;
-      font-size: 0.9rem;
-    }
-
-    .footer a {
-      color: #000000;
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
+    .login-container button:hover { transform: translateY(-2px); }
+    .footer { margin-top: 2rem; color: #ccc; font-size: 0.9rem; }
+    .footer a { color: #000; text-decoration: none; }
   </style>
 </head>
-<body onclick="handleBackgroundClick(event)">
+<body>
   <div class="login-container">
     <h2>Login</h2>
     <p>Bem-vindo de volta criativo!</p>
 
-    <!-- ⚙️ Removido o action e method -->
-     <form action="http://localhost/GitHub/whileplay_aez/whileplay_aez/back-end/controllers/loginController.php" method="POST">
-  <input type="email" name="email" placeholder="E-mail" required>
-  <input type="password" name="senha" placeholder="Senha" required>
-  <button type="submit">Entrar</button>
-</form>
-
-<!-- <form id="loginForm" action="http://localhost/GitHub/whileplay_aez/whileplay_aez/back-end/controllers/loginController.php" method="POST">
+    <!-- envia pro back-end -->
+    <form action="http://localhost/GitHub/whileplay_aez/whileplay_aez/back-end/controllers/loginController.php" method="POST">
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="password" name="senha" placeholder="Senha" required>
       <button type="submit">Entrar</button>
-    </form> -->
+    </form>
 
     <div class="footer">
       <a href="cadastro.html">Criar uma conta</a>
@@ -132,49 +74,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  const params = new URLSearchParams(window.location.search);
-
-  if (params.get('erro') === 'campos') {
-    alert('Preencha todos os campos!');
-  } else if (params.get('erro') === 'invalido') {
-    alert('Email ou senha inválidos!');
-  }
-
-  if (params.get('success') === 'cadastro') {
-    alert('Cadastro realizado com sucesso! Faça login.');
-  }
-});
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   const params = new URLSearchParams(window.location.search);
-
-    //   if (params.get('erro') === 'campos') {
-    //     alert('Preencha todos os campos!');
-    //   } else if (params.get('erro') === 'invalido') {
-    //     alert('Email ou senha inválidos!');
-    //   }
-
-    //   if (params.get('success') === 'cadastro') {
-    //     alert('Cadastro realizado com sucesso! Faça login.');
-    //   }
-
-      // 👉 Agora o clique em "Entrar" leva direto para homepage2_com_login.html
-    //   const form = document.getElementById('loginForm');
-    //   form.addEventListener('submit', function(event) {
-    //     event.preventDefault(); // impede envio real
-    //     window.location.href = 'homepage2_com_login.html'; // redireciona
-    //   });
-    //  });
-
-    // function handleBackgroundClick(event) {
-    //   const container = document.querySelector('.login-container');
-    //   if (!container.contains(event.target)) {
-    //     const confirmRedirect = confirm("Deseja voltar para a homepage?");
-    //     if (confirmRedirect) {
-    //       window.location.href = "homepage2_com_login.html";
-    //     }
-    //   }
-    // }
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('erro') === 'invalido') alert('Email ou senha inválidos!');
+    });
   </script>
 </body>
 </html>

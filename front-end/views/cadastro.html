@@ -113,13 +113,14 @@
     <p>Crie sua conta e comece agora!</p>
 
     <!-- ⚙️ Sem action nem envio real -->
-    <form id="cadastroForm">
-      <input type="text" name="nome_completo" placeholder="Nome completo" required>
-      <input type="text" name="username" placeholder="Usuário" required>
-      <input type="email" name="email" placeholder="E-mail" required>
-      <input type="password" name="senha" placeholder="Senha (mín. 6 caracteres)" required>
-      <button type="submit">Cadastrar</button>
+     <form action="http://localhost/GitHub/whileplay_aez/whileplay_aez/back-end/controllers/cadastroController.php" method="POST">
+    <input type="text" name="nome_completo" placeholder="Nome completo" required>
+    <input type="text" name="username" placeholder="Usuário" required>
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha (mín. 6 caracteres)" required>
+    <button type="submit">Cadastrar</button>
     </form>
+
 
     <div class="footer">
       <a href="login.html">Já tem conta?</a>
@@ -127,12 +128,6 @@
   </div>
 
   <script>
-    // 👉 Impede envio real e redireciona para login.html
-    document.getElementById('cadastroForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // impede envio real
-      window.location.href = 'login.html'; // redireciona para a tela de login
-    });
-
     // Função para redirecionar caso clique fora do container
     function handleBackgroundClick(event) {
       const container = document.querySelector('.login-container');
@@ -143,6 +138,15 @@
         }
       }
     }
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('erro') === 'email') {
+    alert('Este e-mail já está cadastrado. Tente outro.');
+    } else if (params.get('erro') === 'desconhecido') {
+    alert('Erro ao cadastrar. Tente novamente mais tarde.');
+    }
+
+
   </script>
 </body>
 </html>

@@ -7,13 +7,24 @@ class Usuario {
     }
 
     public function cadastrar($nome_completo, $username, $email, $senha) {
-        $sql = "INSERT INTO perfil (nome_completo, username, email, senha) VALUES (:nome_completo, :username, :email, :senha)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':nome_completo', $nome_completo);
-        $stmt->bindValue(':username', $username);
-        $stmt->bindValue(':email', $email);
-        $stmt->bindValue(':senha', password_hash($senha, PASSWORD_DEFAULT));
-        return $stmt->execute();
+        try {
+            $sql = "INSERT INTO perfil (nome_completo, username, email, senha) 
+                    VALUES (:nome_completo, :username, :email, :senha)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':nome_completo', $nome_completo);
+            $stmt->bindValue(':username', $username);
+            $stmt->bindValue(':email', $email);
+            $stmt->bindValue(':senha', password_hash($senha, PASSWORD_DEFAULT));
+            return $stmt->execute();
+
+        } catch (PDOException $e) {
+            // Se for erro de email duplicado
+            if ($e->getCode() == 23000) {
+                return "email_duplicado";
+            }
+            // Qualquer outro erro
+            return false;
+        }
     }
 
     public function autenticar($email, $senha) {
