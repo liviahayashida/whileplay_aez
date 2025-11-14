@@ -4,13 +4,10 @@ require_once __DIR__ . '/../controllers/AssinaturaController.php';
 // Captura o caminho da URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Caminho base até a pasta /public
 $basePath = '/GitHub/whileplay_aez/whileplay_aez/back-end/public';
 
-// Remove o prefixo base para obter apenas a rota final
 $rota = str_replace($basePath, '', $uri);
 
-// Roteamento principal
 switch ($rota) {
     case '/assinatura-form':
         (new AssinaturaController())->showForm();

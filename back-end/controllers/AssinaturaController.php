@@ -6,10 +6,6 @@ class AssinaturaController {
     // MOSTRAR FORMULÁRIO
     public function showForm() {
     session_start();
-
-    // Quando tentar acessar o formulário, salva onde deve voltar após login
-    $_SESSION['redirect_after_login'] = "/GitHub/whileplay_aez/whileplay_aez/back-end/assinatura-form";
-
     require_once __DIR__ . '/../views/assinatura_form.php';
 }
 
@@ -61,9 +57,9 @@ class AssinaturaController {
         $data_cancelamento ? $data_cancelamento . " 00:00:00" : null
     ]);
 
-    // REDIRECIONAMENTO APÓS SALVAR
-    header("Location: /GitHub/whileplay_aez/whileplay_aez/front-end/views/homepage2_com_assinatura.html");
+    header("Location: http://localhost/GitHub/whileplay_aez/whileplay_aez/front-end/views/homepage2_com_assinatura.html");
     exit;
+
 }
 
 

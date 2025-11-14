@@ -86,16 +86,15 @@ class Assinatura {
         ]);
     }
 
-    // 🟢 Excluir assinatura pelo ID do usuário
+
     public function deleteByUsuario($usuario_id) {
         $stmt = $this->pdo->prepare("DELETE FROM assinaturas WHERE usuario_id = :usuario_id");
         $stmt->execute([':usuario_id' => $usuario_id]);
     }
 
-    // 🟢 Excluir assinatura pelo ID
-    public function deleteById($id) {
-        $stmt = $this->pdo->prepare("DELETE FROM assinaturas WHERE id = :id");
-        $stmt->execute([':id' => $id]);
-    }
+    // public function deleteById($id) {
+    //     $stmt = $this->pdo->prepare("DELETE FROM assinaturas WHERE id = :id");
+    //     $stmt->execute([':id' => $id]);
+    // }
 }
 ?>
