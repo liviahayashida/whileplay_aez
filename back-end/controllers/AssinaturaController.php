@@ -1,89 +1,98 @@
 <?php
-require_once '../models/Assinatura.php';
+require_once __DIR__ . '/../config/db.php';
 
 class AssinaturaController {
 
-    // Exibe o formulário de criação
+    // MOSTRAR FORMULÁRIO
     public function showForm() {
-        require '../views/assinatura_form.php'; 
+    session_start();
+
+    // Quando tentar acessar o formulário, salva onde deve voltar após login
+    $_SESSION['redirect_after_login'] = "/GitHub/whileplay_aez/whileplay_aez/back-end/assinatura-form";
+
+    require_once __DIR__ . '/../views/assinatura_form.php';
+}
+
+
+   public function saveAssinatura() {
+    include __DIR__ . '/../config/db.php';
+
+    // Recebe dados do formulário
+    $email = $_POST['email'] ?? null;
+    $cidade = $_POST['cidade'] ?? null;
+    $endereco = $_POST['endereco'] ?? null;
+    $cep = $_POST['cep'] ?? null;
+    $cpf = $_POST['cpf'] ?? null;
+    $status = $_POST['status'] ?? 'ativa';
+    $data_assinatura = $_POST['data_assinatura'] ?? null;
+    $data_cancelamento = $_POST['data_cancelamento'] ?? null;
+
+    if (!$email) {
+        die("Erro: o email é obrigatório.");
     }
 
-    // Salva nova assinatura
-    public function saveAssinatura() {
-        $usuario_id = $_POST['usuario_id'] ?? null;
-        $cidade = trim($_POST['cidade'] ?? '');
-        $endereco = trim($_POST['endereco'] ?? '');
-        $cep = trim($_POST['cep'] ?? '');
-        $cpf = trim($_POST['cpf'] ?? '');
-        $status = $_POST['status'] ?? 'ativa';
-        $data_assinatura = $_POST['data_assinatura'] ?? date('Y-m-d H:i:s');
-        $data_cancelamento = !empty($_POST['data_cancelamento']) ? $_POST['data_cancelamento'] : null;
+    // Buscar o ID do usuário na tabela PERFIL usando o email
+    $sqlUser = "SELECT id FROM perfil WHERE email = ?";
+    $stmtUser = $pdo->prepare($sqlUser);
+    $stmtUser->execute([$email]);
+    $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
-        // validação básica
-        if (!$usuario_id || !$cpf) {
-            die('Erro: Campos obrigatórios não informados.');
-        }
-
-        $assinatura = new Assinatura();
-        $assinatura->save($usuario_id, $cidade, $endereco, $cep, $cpf, $status, $data_assinatura, $data_cancelamento);
-
-        header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/list-assinaturas');
-        exit;
+    if (!$user) {
+        die("Erro: Nenhum usuário encontrado com esse e-mail na tabela perfil.");
     }
 
-    // Lista todas as assinaturas
+    $usuario_id = $user['id'];
+
+    // Inserir assinatura
+    $sql = "INSERT INTO assinaturas 
+            (usuario_id, cidade, endereco, cep, cpf, status, data_assinatura, data_cancelamento)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        $usuario_id,
+        $cidade,
+        $endereco,
+        $cep,
+        $cpf,
+        $status,
+        $data_assinatura ? $data_assinatura . " 00:00:00" : null,
+        $data_cancelamento ? $data_cancelamento . " 00:00:00" : null
+    ]);
+
+    // REDIRECIONAMENTO APÓS SALVAR
+    header("Location: /GitHub/whileplay_aez/whileplay_aez/front-end/views/homepage2_com_assinatura.html");
+    exit;
+}
+
+
+    // LISTAR ASSINATURAS
     public function listAssinaturas() {
-        $assinatura = new Assinatura();
-        $assinaturas = $assinatura->getAll();
-        require '../views/assinatura_list.php';
+        include __DIR__ . '/../config/db.php';
+
+        $stmt = $pdo->query("SELECT * FROM assinaturas");
+        $assinaturas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        header('Content-Type: application/json');
+        echo json_encode($assinaturas);
     }
 
-    // Exclui a assinatura de um usuário específico
+    // APAGAR ASSINATURA PELO USUÁRIO
     public function deleteAssinaturaByUsuario() {
-        $usuario_id = $_POST['usuario_id'] ?? null;
+        include __DIR__ . '/../config/db.php';
 
-        if ($usuario_id) {
-            $assinatura = new Assinatura();
-            $assinatura->deleteByUsuario($usuario_id);
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            echo json_encode(['erro' => 'ID não informado']);
+            return;
         }
 
-        header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/list-assinaturas');
-        exit;
-    }
+        $sql = "DELETE FROM assinaturas WHERE usuario_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
 
-    // Exibe o formulário de atualização
-    public function showUpdateForm($id) {
-        $assinatura = new Assinatura();
-        $assinaturaInfo = $assinatura->getById($id);
-
-        if (!$assinaturaInfo) {
-            die('Assinatura não encontrada.');
-        }
-
-        require '../views/update_assinatura_form.php';
-    }
-
-    // Atualiza os dados da assinatura
-    public function updateAssinatura() {
-        $id = $_POST['id'] ?? null;
-        $usuario_id = $_POST['usuario_id'] ?? null;
-        $cidade = trim($_POST['cidade'] ?? '');
-        $endereco = trim($_POST['endereco'] ?? '');
-        $cep = trim($_POST['cep'] ?? '');
-        $cpf = trim($_POST['cpf'] ?? '');
-        $status = $_POST['status'] ?? 'ativa';
-        $data_assinatura = $_POST['data_assinatura'] ?? date('Y-m-d H:i:s');
-        $data_cancelamento = !empty($_POST['data_cancelamento']) ? $_POST['data_cancelamento'] : null;
-
-        if (!$id || !$usuario_id) {
-            die('Erro: ID ou usuário não informado.');
-        }
-
-        $assinatura = new Assinatura();
-        $assinatura->update($id, $usuario_id, $cidade, $endereco, $cep, $cpf, $status, $data_assinatura, $data_cancelamento);
-
-        header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/list-assinaturas');
-        exit;
+        echo json_encode(['sucesso' => true]);
     }
 }
-?>

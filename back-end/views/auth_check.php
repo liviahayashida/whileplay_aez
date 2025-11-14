@@ -1,8 +1,13 @@
 <?php
 session_start();
 
-// Se o usuário não estiver logado, redireciona para a página de login
 if (!isset($_SESSION['user_id'])) {
+
+    // Registra o destino após o login
+    if (!isset($_SESSION['redirect_after_login'])) {
+        $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
+    }
+
     header('Location: /GitHub/whileplay_aez/whileplay_aez/back-end/login');
     exit();
 }
