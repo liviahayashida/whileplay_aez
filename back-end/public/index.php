@@ -15,10 +15,11 @@ switch ($rota) {
     break;
 
     //PUBLICAR
-    case '/publicar':
+    case '/update-publicar':
     require_once __DIR__ . '/../controllers/PublicarController.php';
-    (new PublicarController())->editPublicar();
+    (new PublicarController())->updatePublicar();
     break;
+
 
     case '/delete-publicar':
     require_once __DIR__ . '/../controllers/PublicarController.php';

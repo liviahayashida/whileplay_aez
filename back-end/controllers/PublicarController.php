@@ -62,22 +62,30 @@ class PublicarController {
     }
 
     // Atualizar publicação por id
-    public function atualizar($id) {
-        try {
-            $dados = $_POST;
-            $publicar = new Publicar();
-            $rows = $publicar->atualizar($id, $dados);
-            if (!$rows) {
-                http_response_code(404);
-                echo json_encode(['success' => false, 'message' => 'Publicação não encontrada']);
-                return;
-            }
-            echo json_encode(['success' => true, 'message' => 'Publicação atualizada com sucesso']);
-        } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
-        }
-    }
+   public function updatePublicarById($id) {
+    $id = $_POST['id'] ?? null;
+
+if (!$id) {
+    echo "ID da publicação não informado.";
+    exit;
+}
+
+    $publicar = new Publicar();
+
+    $dados = [
+        'titulo'    => $_POST['titulo'] ?? null,
+        'sinopse'   => $_POST['sinopse'] ?? null,
+        'tipo'      => $_POST['tipo'] ?? null,
+        'arquivo_url' => $_POST['arquivo_url'] ?? null,
+        'status'    => $_POST['status'] ?? null
+    ];
+
+    $publicar->atualizar($id, $dados);
+
+    header('Location: /GitHub/whileplay_aez/whileplay_aez/back-end/views/list-publicar');
+    exit;
+}
+
 
     // Deletar publicação por id
     public function deletar($id) {
