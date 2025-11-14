@@ -113,7 +113,7 @@
     <p>Crie sua conta e comece agora!</p>
 
     <!-- ⚙️ Sem action nem envio real -->
-     <form action="http://localhost/GitHub/whileplay_aez/whileplay_aez/back-end/controllers/cadastroController.php" method="POST">
+     <form action="http://localhost/GitHub/whileplay_aez/whileplay_aez/back-end/public/save-cadastro" method="POST">
     <input type="text" name="nome_completo" placeholder="Nome completo" required>
     <input type="text" name="username" placeholder="Usuário" required>
     <input type="email" name="email" placeholder="E-mail" required>
@@ -128,16 +128,6 @@
   </div>
 
   <script>
-    // Função para redirecionar caso clique fora do container
-    function handleBackgroundClick(event) {
-      const container = document.querySelector('.login-container');
-      if (!container.contains(event.target)) {
-        const confirmRedirect = confirm("Deseja voltar para a homepage?");
-        if (confirmRedirect) {
-          window.location.href = "homepage2_com_login.html";
-        }
-      }
-    }
     const params = new URLSearchParams(window.location.search);
 
     if (params.get('erro') === 'email') {

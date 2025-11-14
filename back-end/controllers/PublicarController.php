@@ -95,21 +95,51 @@ class PublicarController {
             echo json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
     }
-
-    // --- Methods expected by the router in public/index.php ---
     public function savePublicar() {
-        // expects POST
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);
-            echo 'Método não permitido';
-            return;
-        }
-        $post = $_POST;
-    $publicar = new Publicar();
-    $publicar->criar($post);
-    header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/public/list-publicar');
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        echo 'Método não permitido';
+        return;
+    }
+
+    require_once __DIR__ . '/../models/Perfil.php';
+    $perfil = new Perfil();
+
+    $email = trim($_POST['email'] ?? '');
+
+    if (empty($email)) {
+        echo "Erro: email não informado.";
         exit;
     }
+
+    // Buscar usuário pelo email
+    $usuario = $perfil->buscarPorEmail($email);
+
+    if (!$usuario) {
+        echo "Erro: não existe um usuário com esse email.";
+        exit;
+    }
+
+    $usuario_id = $usuario['id'];
+    $dados = [
+        'usuario_id' => $usuario_id,
+        'titulo' => $_POST['titulo'] ?? null,
+        'sinopse' => $_POST['sinopse'] ?? null,
+        'tipo' => $_POST['tipo'] ?? null,
+        'arquivo_url' => $_POST['arquivo_url'] ?? null,
+        'publicado' => isset($_POST['publicado']) ? 1 : 0,
+        'status' => $_POST['status'] ?? 'rascunho'
+    ];
+
+    require_once __DIR__ . '/../models/Publicar.php';
+    $publicar = new Publicar();
+
+    $publicar->criar($dados);
+
+    header('Location: /GitHub/whileplay_aez/whileplay_aez/back-end/views/publicar_list.php');
+    exit;
+}
+
 
     public function listPublicars() {
         $publicar = new Publicar();
@@ -120,12 +150,12 @@ class PublicarController {
 
     public function deletePublicarById($id) {
         if (empty($id)) {
-            header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/public/list-publicar');
+            header('Location: /GitHub/whileplay_aez/whileplay_aez/back-end/views/publicar_list.php]');
             exit;
         }
         $publicar = new Publicar();
         $publicar->deletar($id);
-    header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/public/list-publicar');
+    header('Location: /GitHub/whileplay_aez/whileplay_aez/back-end/views/publicar_list.php');
         exit;
     }
 
@@ -147,7 +177,7 @@ class PublicarController {
             $publicar = new Publicar();
             $publicar->atualizar($id, $post);
         }
-        header('Location: /GitHub/whileplay/while-play/projeto_whileplay/back-end/list-publicars');
+        header('Location: /GitHub/whileplay_aez/whileplay_aez/back-end/views/list-publicars');
         exit;
     }
 

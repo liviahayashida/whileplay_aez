@@ -1,7 +1,4 @@
 <?php
-header('Location: /GitHub/whileplay_aez/whileplay_aez/front-end/views/login.html?success=cadastro');
-exit;
-
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../models/Usuario.php';
 
@@ -25,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt->execute();
             echo "✅ Cadastro realizado com sucesso!";
-            header("Location: ../front-end/login.html");
+            header("Location: ../../front-end/views/login.html");
             exit;
         } catch (PDOException $e) {
             echo "❌ Erro ao cadastrar: " . $e->getMessage();

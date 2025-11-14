@@ -1,16 +1,28 @@
-<?php include __DIR__ . '/cabecalho_dinamico.php'; ?>
 <?php
+require_once __DIR__ . '/../models/Perfil.php';
 require_once __DIR__ . '/../models/Publicar.php';
 
 $publicar = new Publicar();
+$perfil = new Perfil(); // <<< modelo que acessa tabela "perfil"
 
 // Handle POST create/update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $post = $_POST;
     $id = !empty($post['id']) ? (int)$post['id'] : null;
 
+    // Buscar usuario_id pelo email
+    $email = trim($post['email'] ?? '');
+    $usuario = $perfil->buscarPorEmail($email);
+
+    if (!$usuario) {
+        echo '<p style="color:red">Erro: Nenhum usuário encontrado com este email.</p>';
+        exit;
+    }
+
+    $usuario_id = $usuario['id'];
+
     $dados = [
-        'usuario_id' => $post['usuario_id'] ?? null,
+        'usuario_id' => $usuario_id,
         'titulo' => $post['titulo'] ?? null,
         'sinopse' => $post['sinopse'] ?? null,
         'tipo' => $post['tipo'] ?? null,
@@ -19,23 +31,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'status' => $post['status'] ?? 'rascunho'
     ];
 
-  try {
-    if ($id) {
-      $publicar->atualizar($id, $dados);
-    } else {
-      $publicar->criar($dados);
+    try {
+        if ($id) {
+            $publicar->atualizar($id, $dados);
+        } else {
+            $publicar->criar($dados);
+        }
+    } catch (Exception $e) {
+        echo '<p style="color:red">Erro ao salvar publicação: ' . htmlspecialchars($e->getMessage()) . '</p>';
+        exit;
     }
-  } catch (Exception $e) {
-    echo '<p style="color:red">Erro ao salvar publicação: ' . htmlspecialchars($e->getMessage()) . '</p>';
-    exit;
-  }
 
-  $base = rtrim(dirname($_SERVER['REQUEST_URI']), '/\\');
-  $redirect = $base . '/publicar_list.php';
-  header('Location: ' . $redirect);
-  exit;
+    $base = rtrim(dirname($_SERVER['REQUEST_URI']), '/\\');
+    $redirect = $base . '/publicar_list.php';
+    header('Location: ' . $redirect);
+    exit;
 }
- 
+
 // If editing, load item
 $editing = false;
 $item = null;
@@ -43,7 +55,6 @@ if (isset($_GET['id'])) {
     $editing = true;
     $item = $publicar->buscarPorId((int)$_GET['id']);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -62,25 +73,42 @@ if (isset($_GET['id'])) {
 <body>
   <main>
     <h1><?php echo $editing ? 'Editar Publicação' : 'Nova Publicação'; ?></h1>
-  <form method="post" action="/GitHub/whileplay/while-play/projeto_whileplay/back-end/public/save-publicar">
-      <input type="hidden" name="id" value="<?php echo $editing ? (int)$item['id'] : ''; ?>" />
-      <input type="number" name="usuario_id" placeholder="ID do Usuário" required value="<?php echo $editing ? htmlspecialchars($item['usuario_id']) : ''; ?>" />
-      <input type="text" name="titulo" placeholder="Título" required value="<?php echo $editing ? htmlspecialchars($item['titulo']) : ''; ?>" />
-      <textarea name="sinopse" placeholder="Sinopse"><?php echo $editing ? htmlspecialchars($item['sinopse']) : ''; ?></textarea>
-      <select name="tipo">
-        <option value="roteiro" <?php echo ($editing && ($item['tipo'] ?? '') === 'roteiro') ? 'selected' : ''; ?>>Roteiro</option>
-        <option value="personagem" <?php echo ($editing && ($item['tipo'] ?? '') === 'personagem') ? 'selected' : ''; ?>>Personagem</option>
-      </select>
-      <input type="text" name="arquivo_url" placeholder="URL do arquivo (opcional)" value="<?php echo $editing ? htmlspecialchars($item['arquivo_url'] ?? '') : ''; ?>" />
-      <select name="status">
-        <option value="rascunho" <?php echo ($editing && ($item['status'] ?? '') === 'rascunho') ? 'selected' : ''; ?>>Rascunho</option>
-        <option value="publicado" <?php echo ($editing && ($item['status'] ?? '') === 'publicado') ? 'selected' : ''; ?>>Publicado</option>
-        <option value="rejeitado" <?php echo ($editing && ($item['status'] ?? '') === 'rejeitado') ? 'selected' : ''; ?>>Rejeitado</option>
-      </select>
-      <input type="hidden" name="publicado" value="1" />
-      <button type="submit"><?php echo $editing ? 'Atualizar' : 'Salvar'; ?></button>
-    </form>
-  <p><a href="/GitHub/whileplay/while-play/projeto_whileplay/back-end/public/list-publicar">⬅️ Voltar para a lista</a></p>
-  </main>
-</body>
-</html>
+
+    <form method="post" action="/GitHub/whileplay_aez/whileplay_aez/back-end/public/save-publicar">
+
+      <input type="email" name="email" placeholder="Digite seu Email" required 
+           value="<?php echo $editing ? htmlspecialchars($item['email'] ?? '') : ''; ?>" />
+
+    <input type="text" name="titulo" placeholder="Título" required 
+           value="<?php echo $editing ? htmlspecialchars($item['titulo']) : ''; ?>" />
+
+    <textarea name="sinopse" placeholder="Sinopse"><?php 
+        echo $editing ? htmlspecialchars($item['sinopse']) : ''; ?></textarea>
+
+    <select name="tipo">
+        <option value="roteiro" <?php echo ($editing && $item['tipo'] === 'roteiro') ? 'selected' : ''; ?>>Roteiro</option>
+        <option value="personagem" <?php echo ($editing && $item['tipo'] === 'personagem') ? 'selected' : ''; ?>>Personagem</option>
+    </select>
+
+    <input type="text" name="arquivo_url" placeholder="URL do arquivo (opcional)" 
+           value="<?php echo $editing ? htmlspecialchars($item['arquivo_url']) : ''; ?>" />
+
+    <select name="status">
+        <option value="rascunho">Rascunho</option>
+        <option value="publicado">Publicado</option>
+        <option value="rejeitado">Rejeitado</option>
+    </select>
+
+
+    <input type="hidden" name="publicado" value="1" />
+
+    <div style="display:flex; gap:10px;">
+        <button type="submit">Salvar</button>
+
+        <a href="/GitHub/whileplay_aez/whileplay_aez/front-end/views/homepage2_com_assinatura.html"
+           style="display:inline-block; padding:0.7rem 1rem; background:#dcdde1; color:#2f3640; 
+                  text-decoration:none; border-radius:4px;">
+            Voltar
+        </a>
+    </div>
+</form>
