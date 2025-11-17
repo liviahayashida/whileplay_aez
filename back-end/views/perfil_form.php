@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Perfil</title>
+    <title>Alterar Perfil</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         /* RESET BÁSICO */
@@ -94,56 +94,42 @@
                 flex-direction: column;
             }
         }
+
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Criar Novo Perfil</h2>
+        <h2>Alterar Perfil</h2>
 
-        <form class="form-section" action="/GitHub/whileplay/while-play/projeto_whileplay/back-end/save-perfil" method="POST" enctype="multipart/form-data">
-            <div class="coluna-esquerda">
-                <div class="campo">
-                    <label for="nome_completo">Nome Completo:</label>
-                    <input type="text" id="nome_completo" name="nome_completo" required>
-                </div>
+       <form action="/GitHub/whileplay_aez/whileplay_aez/back-end/public/perfil/atualizar"
+      method="POST"
+      enctype="multipart/form-data">
 
-                <div class="campo">
-                    <label for="username">Nome de Usuário:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
 
-                <div class="campo">
-                    <label for="biografia">Biografia:</label>
-                    <textarea id="biografia" name="biografia" rows="4"></textarea>
-                </div>
+    <label>Nome completo</label>
+    <input type="text" name="nome_completo" required>
 
-                <div class="campo">
-                    <label for="imagem">Foto de Perfil:</label>
-                    <input type="file" id="imagem" name="imagem" accept="image/*">
-                </div>
-            </div>
+    <label>Username</label>
+    <input type="text" name="username" required>
 
-            <div class="coluna-direita">
-                <div class="campo">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+    <label>Biografia</label>
+    <textarea name="biografia"></textarea>
 
-                <div class="campo">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
-                </div>
+    <label>Email</label>
+    <input type="email" name="email" required>
 
-                <div class="campo">
-                    <label for="data_criacao">Data de Criação:</label>
-                    <input type="date" id="data_criacao" name="data_criacao" required>
-                </div>
+    <label>Senha</label>
+    <input type="password" name="senha" required>
 
-                <button type="submit">Salvar Perfil</button>
-            </div>
-        </form>
-    </div>
+    <label>Data criação</label>
+    <input type="date" name="data_criacao" required>
+
+    <label>Imagem</label>
+    <input type="file" name="imagem">
+
+    <button type="submit">Salvar alterações</button>
+</form>
 
 </body>
 </html>
