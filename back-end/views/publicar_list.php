@@ -163,8 +163,19 @@ $dados = $publicar->listar();
     </header>
 
     <main>
-        <a class="add" href="/GitHub/whileplay_aez/whileplay_aez/back-end/views/publicar_form.php">➕ Nova Publicação</a>
+<div style="display: flex; gap: 15px; margin-bottom: 25px;">
+    
+    <a class="add" 
+       href="/GitHub/whileplay_aez/whileplay_aez/front-end/views/homepage2_com_assinatura.html"
+       style="background-color:#ccc; color:#000; box-shadow:0px 4px 10px rgba(255,255,255,0.2);">
+        Voltar
+    </a>
 
+    <a class="add" href="/GitHub/whileplay_aez/whileplay_aez/back-end/views/publicar_form.php">
+        ➕ Nova Publicação
+    </a>
+
+</div>
         <section id="listaPublicacoes">
             <?php if (empty($dados)): ?>
                 <p>Nenhuma publicação encontrada.</p>
