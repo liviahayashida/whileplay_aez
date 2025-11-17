@@ -6,19 +6,12 @@
   <title>Trending Games</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="../public/MEDIA/FONTE/creato_display/CreatoDisplay-ExtraBoldItalic.otf" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-  
-  <!-- Fonte Adamina -->
-  <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
-  
   <!-- Ícones do Material Design -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <style>
-    /* Fonte padrão do corpo */
-     /* RESET BÁSICO */
+    /* BÁSICO */
+      /* RESET BÁSICO */
       * {
         margin: 0;
         padding: 0;
@@ -57,12 +50,12 @@
         font-size: 18px;
         padding: 10px 15px;
         transition: background 0.3s, color 0.3s;
+        font-family: 'Roboto', sans-serif;
       }
       .navbar a:hover {
         background-color: rgba(255, 255, 255, 0.2);
         border-radius: 8px;
       }
-
     .search-box {
       background: white;
       border-radius: 30px;
@@ -85,6 +78,28 @@
       margin-left: 8px;
     }
 
+    .user-profile-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subscription-badge {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #FFD700; /* Cor dourada para indicar premium */
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .subscription-badge .material-icons {
+      font-size: 16px;
+    }
+
     .profile-icon {
       background-color: white;
       color: #007bff;
@@ -97,6 +112,7 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: relative;
     }
 
     .profile-icon:hover {
@@ -108,7 +124,26 @@
       font-size: 24px;
     }
     
-    /* Estilo para o dropdown do perfil (opcional) */
+    .verified-badge {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      background-color: #FFD700;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid white;
+    }
+    
+    .verified-badge .material-icons {
+      font-size: 14px;
+      color: #333;
+    }
+    
+    /* Estilo para o dropdown do perfil */
     .profile-dropdown {
       position: relative;
       display: inline-block;
@@ -119,7 +154,7 @@
       position: absolute;
       right: 0;
       background-color: white;
-      min-width: 160px;
+      min-width: 200px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
       border-radius: 8px;
@@ -140,8 +175,25 @@
       border-radius: 0;
     }
     
+    .dropdown-content .premium-option {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .dropdown-content .premium-option .material-icons {
+      color: #FFD700;
+      font-size: 16px;
+    }
+    
     .profile-dropdown:hover .dropdown-content {
       display: block;
+    }
+    
+    .dropdown-divider {
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 5px 0;
     }
 /* Estilos gerais */
 .clear {
@@ -435,7 +487,69 @@ h3 {
 .option.active .label {
   opacity: 1; /* Torna visível quando o slide está ativo */
 }
-  </style>
+/* RESET E BASE */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Adamina', serif;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* RODAPÉ */
+.rodape {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 40px;
+    background-color: #1e1e1e;
+    color: #ccc;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.rodape div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.rodape h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.rodape a {
+    display: block;
+    color: #247fe6;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.rodape a:hover {
+    text-decoration: underline;
+}
+
+.rodape img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.contato {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+    </style>
 </head>
 <body>
 
@@ -447,19 +561,32 @@ h3 {
           <span onclick="clearSearch()">❌</span>
         </div>
 
-        <a href="sobrenos_com_login.html">Sobre Nós</a>
-        <a href="premios_com_login.html">Prêmios</a>
-        <a href="roteiros_com_login.html">Roteiro</a>
-        <a href="homepage2_com_login.html">Homepage</a>
-        <a href="personagens_com_login.html">Personagens</a>
-        <a href="assinatura.html">Assinatura</a>
-        
-        <!-- Substituindo o botão de login por um ícone de perfil -->
-        <div class="profile-dropdown">
-          <div class="profile-icon" onclick="window.location.href='perfilPremium.html'">
-            <span class="material-icons">person</span>
+        <a href="sobrenos_com_assinatura.html">Sobre Nós</a>
+        <a href="premios_com_assinatura.html">Prêmios</a>
+        <a href="roteiros_com_assinatura.html">Roteiro</a>
+        <a href="homepage2_com_assinatura.html">Homepage</a>
+        <a href="biblioteca_com_assinatura.html">Biblioteca</a>
+        <a href="personagens_com_assinatura.html">Personagens</a>
+        <a href="../../back-end/views/publicar_form.php">Publicar</a>
+
+        <div class="user-profile-area">
+          </div>
+          
+          <div class="profile-dropdown">
+          <div class="profile-icon" onclick="window.location.href='../../back-end/views/perfil_form.php'">
+              <span class="material-icons">person</span>
+              <div class="verified-badge">
+                <span class="material-icons">verified</span>
+              </div>
           </div>
           <div class="dropdown-content">
+            <a href="#" class="premium-option">
+              <span class="material-icons">verified</span>
+              Membro Premium
+            </a>
+          </div>
+        </div>
+
           </div>
         </div>
       </div>
@@ -489,7 +616,7 @@ h3 {
   <div class="item" style="background-image: url('../public/MEDIA/imagens/Beyonce.jpg');">
       <div class="item-desc">
         <h3>Echoes</h3>
-        <p>Boneco esquecido de um garoto que sofria bullyng e ele gastava sua raiva pintando o boneco.</p>
+        <p>Boneco esquecido de um garoto que sofria bullyng e ele gastava sua raiva criando histórias para o boneco.</p>
       </div>
     </div>
   <div class="item" style="background-image: url('../public/MEDIA/imagens/heroesAndVillans.png');">
@@ -528,7 +655,7 @@ h3 {
         <button id="baixar-roteiro-btn" style="background:#fff;color:#222;font-weight:bold;padding:10px 28px;border:none;border-radius:8px;cursor:pointer;font-size:18px;">Baixar Personagem</button>
         <button id="comprar-btn" style="background:#fe4141;color:#fff;font-weight:bold;padding:10px 28px;border:none;border-radius:8px;cursor:pointer;font-size:18px;">Comprar</button>
       </div>
-      <button id="fechar-modal-roteiro" style="background:#444;color:#fff;font-weight:bold;padding:8px 22px;border:none;border-radius:8px;cursor:pointer;font-size:16px;margin-top:18px;">Fechar</button>
+  <button id="fechar-modal-roteiro" style="background:#444;color:#fff;font-weight:bold;padding:8px 22px;border:none;border-radius:8px;cursor:pointer;font-size:16px;margin-top:18px;">Fechar</button>
     </div>
   </div>
 </section>
@@ -624,6 +751,25 @@ h3 {
   </div>
 </section>
 
+  <div class="rodape">
+    <div class="producao">
+      <h1>Produtores</h1>
+      <p><br>Diego Alves Gomes<br>Geovana Clemente Cruz<br>Livia Mayumi Hayashida<br>Victor do Vale Souza</p>
+    </div>
+    <div class="suporte">
+      <h1>Precisa de Suporte?</h1>
+      <a href="https://www.google.com.br/">E-mail</a>
+      <a href="../../back-end/views/suporte_form.php">Fale Conosco</a>
+    </div>
+
+    <div class="siga-nos">
+      <h1>Siga-nos!</h1>
+      <a href="https://www.instagram.com/"><img src="../public/MEDIA/imagens/instagram.png" alt="Instagram"></a>
+      <a href="https://www.tiktok.com/login?lang=pt-BR&redirect_url=https%3A%2F%2Fwww.tiktok.com%2Fupload%3Flang%3Dpt-BR"><img src="../public/MEDIA/imagens/tiktok.png" alt="TikTok"></a>
+    </div>
+
+    <p class="contato">Contato: aez.whileplay@gmail.com</p>
+  </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>
@@ -698,92 +844,12 @@ $(document).ready(function(){
     if(e.target === this) $(this).hide();
   });
 });
+$(document).ready(function () {
+    $('#baixar-roteiro-btn').off('click').on('click', function(){
+      window.location.href = '../public/MEDIA/Pdf-roteiros-e-personagens/Imagem_personagem-WhilePlay.pdf';
+    });
+  });
 </script>
 
-<!-- INÍCIO DO RODAPÉ ADICIONADO -->
-<style>
-/* RESET E BASE */
-html {
-    scroll-behavior: smooth;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-/* RODAPÉ */
-.rodape {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 40px;
-    background-color: #1e1e1e;
-    color: #ccc;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.rodape div {
-    flex: 1;
-    min-width: 200px;
-}
-
-.rodape h1 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.rodape a {
-    display: block;
-    color: #247fe6;
-    text-decoration: none;
-    margin: 5px 0;
-}
-
-.rodape a:hover {
-    text-decoration: underline;
-}
-
-.rodape img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-}
-
-.contato {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-}
-</style>
-
-  <div class="rodape">
-    <div class="producao">
-      <h1>Produtores</h1>
-      <p><br>Diego Alves Gomes<br>Geovana Clemente Cruz<br>Livia Mayumi Hayashida<br>Victor do Vale Souza</p>
-    </div>
-    <div class="suporte">
-      <h1>Precisa de Suporte?</h1>
-      <a href="https://www.google.com.br/">E-mail</a>
-      <a href="../../back-end/views/suporte_form.php">Fale Conosco</a>
-    </div>
-
-    <div class="siga-nos">
-      <h1>Siga-nos!</h1>
-      <a href="https://www.instagram.com/"><img src="../public/MEDIA/imagens/instagram.png" alt="Instagram"></a>
-      <a href="https://www.tiktok.com/login?lang=pt-BR&redirect_url=https%3A%2F%2Fwww.tiktok.com%2Fupload%3Flang%3Dpt-BR"><img src="../public/MEDIA/imagens/tiktok.png" alt="TikTok"></a>
-    </div>
-
-    <p class="contato">Contato: aez.whileplay@gmail.com</p>
-  </div>
 </body>
 </html>

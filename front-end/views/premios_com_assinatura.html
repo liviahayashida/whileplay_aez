@@ -441,7 +441,7 @@
   </style>
 </head>
 <body>
-  <header>
+   <header>
     <div class="header-container">
       <div class="navbar">
         <div class="search-box">
@@ -449,34 +449,36 @@
           <span onclick="clearSearch()">❌</span>
         </div>
 
-        <a href="sobrenos_assinatura.html">Sobre Nós</a>
-        <a href="premios_assinatura.html">Prêmios</a>
-        <a href="roteiros_assinatura.html">Roteiro</a>
-        <a href="homepage2_assinatura.html">Homepage</a>
-        <a href="biblioteca.html">Biblioteca</a>
-        <a href="personagens_assinatura.html">Personagens</a>
-        <a href="publicar.html">Publicar</a>
+        <a href="sobrenos_com_assinatura.html">Sobre Nós</a>
+        <a href="premios_com_assinatura.html">Prêmios</a>
+        <a href="roteiros_com_assinatura.html">Roteiro</a>
+        <a href="homepage2_com_assinatura.html">Homepage</a>
+        <a href="biblioteca_com_assinatura.html">Biblioteca</a>
+        <a href="personagens_com_assinatura.html">Personagens</a>
+        <a href="../../back-end/views/publicar_form.php">Publicar</a>
 
-        <div class="user-profile-area">
-
-
-          </div>
-          
-          <div class="profile-dropdown">
-            <div class="profile-icon" onclick="window.location.href='perfil_assinatura.html'">
+        <div class="profile-dropdown">
+          <div class="profile-icon" onclick="window.location.href='../../back-end/views/perfil_form.php'">
               <span class="material-icons">person</span>
-              <!-- Badge de verificação na parte inferior direita do ícone -->
               <div class="verified-badge">
                 <span class="material-icons">verified</span>
               </div>
-            </div>
-            <div class="dropdown-content">
-              <a href="#" class="premium-option">
-                <span class="material-icons">verified</span>
-                Membro Premium
-              </a>
-
           </div>
+          <div class="dropdown-content">
+            <a href="#" class="premium-option">
+              <span class="material-icons">verified</span>
+              Membro Premium
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function clearSearch() {
+        document.getElementById('searchInput').value = '';
+      }
+    </script>
         </div>
       </div>
     </div>
@@ -719,33 +721,25 @@
   }
   </style>
 
+
   <div class="rodape">
     <div class="producao">
       <h1>Produtores</h1>
-      <p><br>Diego Alves Gomes
-        <br>Geovana Clemente Cruz
-        <br>Livia Mayumi Hayashida
-        <br>Victor do Vale Souza
-      </p>
+      <p><br>Diego Alves Gomes<br>Geovana Clemente Cruz<br>Livia Mayumi Hayashida<br>Victor do Vale Souza</p>
     </div>
     <div class="suporte">
       <h1>Precisa de Suporte?</h1>
-      <a href="https://www.exemplo.com">E-mail</a>
-      <a href="../views/suporte_assinatura.html">Fale Conosco</a>
+      <a href="https://www.google.com.br/">E-mail</a>
+      <a href="../../back-end/views/suporte_form.php">Fale Conosco</a>
     </div>
+
     <div class="siga-nos">
       <h1>Siga-nos!</h1>
-      <a href="">
-        <img src="../public/MEDIA/imagens/instagram.png" alt="icon-instagram" width="100" height="100">
-      </a>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap">
-        <img src="../public/MEDIA/imagens/tiktok.png" alt="icon-tiktok" width="100" height="100">
-      </a>
+      <a href="https://www.instagram.com/"><img src="../public/MEDIA/imagens/instagram.png" alt="Instagram"></a>
+      <a href="https://www.tiktok.com/login?lang=pt-BR&redirect_url=https%3A%2F%2Fwww.tiktok.com%2Fupload%3Flang%3Dpt-BR"><img src="../public/MEDIA/imagens/tiktok.png" alt="TikTok"></a>
     </div>
-    <p class="contato">
-      Contato: aez.whileplay@gmail.com
-    </p>
+
+    <p class="contato">Contato: aez.whileplay@gmail.com</p>
   </div>
-  <!-- FIM DO RODAPÉ ADICIONADO -->
 </body>
 </html>
