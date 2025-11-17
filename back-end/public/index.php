@@ -75,11 +75,6 @@ switch ($rota) {
         (new SuporteController())->saveSuporte();
         break;
 
-    case '/list-suportes':
-        require_once __DIR__ . '/../controllers/SuporteController.php';
-        (new SuporteController())->listSuportes();
-        break;
-
     
         // === PERFIL ===
         case '/perfil/atualizar':
