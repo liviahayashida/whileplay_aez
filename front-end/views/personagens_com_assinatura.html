@@ -601,38 +601,38 @@ body {
 <section class="game-section">
   <h2 class="line-title">Recentes publicados</h2>
   <div class="owl-carousel custom-carousel owl-theme">
-  <div class="item active" style="background-image: url('../public/MEDIA/imagens/PlayboiCaripersonagem.jpg');">
+  <div class="item active" data-id="CAR001" style="background-image: url('../public/MEDIA/imagens/PlayboiCaripersonagem.jpg');">
       <div class="item-desc">
         <h3>Carter</h3>
         <p>Artista de rage rap, ele é misterioso e tem um dos shows mais animados do mundo.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/Travisscott.png');">
+  <div class="item" data-id="WEB002" style="background-image: url('../public/MEDIA/imagens/Travisscott.png');">
       <div class="item-desc">
         <h3>Webster</h3>
         <p>Um jovem modelo, com seu sonho de ser rapper. Ele tem um talento incrível porém a vergonha de tentar vestir algo seu fala maior que seu sonho.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/Beyonce.jpg');">
+  <div class="item" data-id="ECH003" style="background-image: url('../public/MEDIA/imagens/Beyonce.jpg');">
       <div class="item-desc">
         <h3>Echoes</h3>
         <p>Boneco esquecido de um garoto que sofria bullyng e ele gastava sua raiva criando histórias para o boneco.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/heroesAndVillans.png');">
+  <div class="item" data-id="THE004" style="background-image: url('../public/MEDIA/imagens/heroesAndVillans.png');">
       <div class="item-desc">
         <h3>Thesvanes</h3>
         <p>Nicky é um jovem negro que após morrer em um acidente, ele é reencarnado em outro homem já tendo sua vida pela metade.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/future.jpg');">
+  <div class="item" data-id="STO005" style="background-image: url('../public/MEDIA/imagens/future.jpg');">
       <div class="item-desc">
         <h3>Stoner</h3>
         <p>Homem de aço que sofreu após uma queda em uma contrução de seu trabalho, voltando para se vingar de todos.</p>
         </p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/jayzjpg.jpg');">
+  <div class="item" data-id="SOL006"style="background-image: url('../public/MEDIA/imagens/jayzjpg.jpg');">
       <div class="item-desc">
         <h3>Solar</h3>
         <p>Após 100 anos de sono, ela acorda e vê que a humanidade não há mais salvação, então ela decide acabar com todos, porém acaba sendo parada por si mesma.</p>
@@ -664,37 +664,37 @@ body {
 <section class="game-section">
   <h2 class="line-title">Maiores avaliações</h2>
   <div class="owl-carousel custom-carousel owl-theme">
-  <div class="item active" style="background-image: url('../public/MEDIA/imagens/magodegelo.png');">
+  <div class="item active" data-id="MAR007" style="background-image: url('../public/MEDIA/imagens/magodegelo.png');">
       <div class="item-desc">
         <h3>March</h3>
         <p>Em uma distopia, ele é um caçador de recompensa frio, porém por dentro é apenas um homem normal querendo mudar de vida.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/curupira.jpg');">
+  <div class="item" data-id="THR008" style="background-image: url('../public/MEDIA/imagens/curupira.jpg');">
       <div class="item-desc">
         <h3>Threenth</h3>
         <p>Pai das árvores que comanda todas as florestas da região do Amazonas.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/yasuke.jpg');">
+  <div class="item" data-id="YAS009" style="background-image: url('../public/MEDIA/imagens/yasuke.jpg');">
       <div class="item-desc">
         <h3>Yasuke</h3>
         <p>Após a destruição de seu planeta samurai, o último deles busca vingança e sede por sangue.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/fada.jpg');">
+  <div class="item" data-id="FAD010" style="background-image: url('../public/MEDIA/imagens/fada.jpg');">
       <div class="item-desc">
         <h3>Fada Scarlleth</h3>
         <p>Fada que proteje as crianças orfãs de noite em orfanatos, pretende protejer elas de viôlencias e entre outros problemas.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/cavalheiro.jpg');">
+  <div class="item" data-id="ULT011" style="background-image: url('../public/MEDIA/imagens/cavalheiro.jpg');">
       <div class="item-desc">
         <h3>Ultimo cavalheiro</h3>
         <p>Defende seu deserto de invasores na procura de adicionar a terra para seu arsenal.</p>
       </div>
     </div>
-  <div class="item" style="background-image: url('../public/MEDIA/imagens/noiva.jpg');">
+  <div class="item" data-id="NOI012" style="background-image: url('../public/MEDIA/imagens/noiva.jpg');">
       <div class="item-desc">
         <h3>Última noiva</h3>
         <p>Após ser traída em seu noivado e sofrer um ataque mortal, ela assombra todos os casais que desejam casar em sua igreja.</p>
@@ -772,84 +772,116 @@ body {
   </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 <script>
   $(".custom-carousel").owlCarousel({
     autoWidth: true,
     loop: true
   });
+
   $(document).ready(function () {
     $(".custom-carousel .item").click(function () {
       $(".custom-carousel .item").not($(this)).removeClass("active");
       $(this).toggleClass("active");
     });
   });
+
   $(".option").click(function () {
-  $(".option").removeClass("active");
-  $(this).addClass("active");
-});
-// Modal de ampliação dos cards de personagem
-$(document).ready(function(){
-  $('.custom-carousel .item').on('click', function(){
-    var bg = $(this).css('background-image');
-    $('#modal-roteiro-img').css('background-image', bg);
-    var titulo = $(this).find('h3').text();
-    var texto = $(this).find('p').text();
-    $('#modal-roteiro-text').html('<strong>' + titulo + '</strong><br>' + texto);
-    // Resetar estrelas
-    $('#star-rating .star').each(function(){
-      $(this).attr('fill', 'none');
-    });
-    let rating = 0;
-    // Hover nas estrelas
-    $('#star-rating .star').off('mouseenter').on('mouseenter', function(){
-      var val = parseInt($(this).data('value'));
-      $('#star-rating .star').each(function(i){
-        $(this).attr('fill', i < val ? '#FFD700' : 'none');
-      });
-    });
-    // Sair do hover
-    $('#star-rating').off('mouseleave').on('mouseleave', function(){
-      $('#star-rating .star').each(function(i){
-        $(this).attr('fill', i < rating ? '#FFD700' : 'none');
-      });
-    });
-    // Clicar para avaliar
-    $('#star-rating .star').off('click').on('click', function(){
-      rating = parseInt($(this).data('value'));
-      $('#star-rating .star').each(function(i){
-        $(this).attr('fill', i < rating ? '#FFD700' : 'none');
-      });
-      // Aqui você pode adicionar lógica para salvar a avaliação
-    });
-    // Botão baixar: não faz nada
-    $('#baixar-roteiro-btn').off('click').on('click', function(){
-      const link = document.createElement('a');
-      link.href = '../public/MEDIA/Pdf-roteiros-e-personagens/Imagem_personagem-WhilePlay.pdf';
-      link.download = 'Imagem_personagem-WhilePlay.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
-    // Botão comprar: redireciona para pagamento.html
-    $('#comprar-btn').off('click').on('click', function(){
-      window.location.href = 'pagamento.html';
-    });
-    $('#modal-roteiro').css('display','flex');
+    $(".option").removeClass("active");
+    $(this).addClass("active");
   });
-  $('#fechar-modal-roteiro').on('click', function(){
-    $('#modal-roteiro').hide();
-  });
-  // Fechar modal ao clicar fora do conteúdo
-  $('#modal-roteiro').on('click', function(e){
-    if(e.target === this) $(this).hide();
-  });
-});
-$(document).ready(function () {
-    $('#baixar-roteiro-btn').off('click').on('click', function(){
-      window.location.href = '../public/MEDIA/Pdf-roteiros-e-personagens/Imagem_personagem-WhilePlay.pdf';
+
+  // ==========================
+  // 📌 MODAL ATUALIZADO
+  // ==========================
+  $(document).ready(function(){
+
+    $('.custom-carousel .item').on('click', function(){
+
+      // Imagem do card
+      var bg = $(this).css('background-image');
+      $('#modal-roteiro-img').css('background-image', bg);
+
+      // Nome
+      var titulo = $(this).find('h3').text();
+
+      // Descrição
+      var texto = $(this).find('p').text();
+
+      // Código de identificação (NOVO)
+      var codigo = $(this).data('id'); // <-- captura direto do data-id
+
+      // Inserindo tudo no modal
+      $('#modal-roteiro-text').html(`
+        <strong>${titulo}</strong><br><br>
+        ${texto}<br><br>
+        <span style="color:#FFD700; font-weight:bold;">
+          Código de identificação: ${codigo}
+        </span>
+      `);
+
+      // Resetar estrelas
+      $('#star-rating .star').each(function(){
+        $(this).attr('fill', 'none');
+      });
+
+      let rating = 0;
+
+      // Hover nas estrelas
+      $('#star-rating .star').off('mouseenter').on('mouseenter', function(){
+        var val = parseInt($(this).data('value'));
+        $('#star-rating .star').each(function(i){
+          $(this).attr('fill', i < val ? '#FFD700' : 'none');
+        });
+      });
+
+      // Sair do hover
+      $('#star-rating').off('mouseleave').on('mouseleave', function(){
+        $('#star-rating .star').each(function(i){
+          $(this).attr('fill', i < rating ? '#FFD700' : 'none');
+        });
+      });
+
+      // Clique para avaliar
+      $('#star-rating .star').off('click').on('click', function(){
+        rating = parseInt($(this).data('value'));
+
+        $('#star-rating .star').each(function(i){
+          $(this).attr('fill', i < rating ? '#FFD700' : 'none');
+        });
+      });
+
+      // Botão para baixar PDF
+      $('#baixar-roteiro-btn').off('click').on('click', function(){
+        const link = document.createElement('a');
+        link.href = '../public/MEDIA/Pdf-roteiros-e-personagens/Imagem_personagem-WhilePlay.pdf';
+        link.download = 'Imagem_personagem-WhilePlay.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Botão comprar
+      $('#comprar-btn').off('click').on('click', function(){
+        window.location.href = 'pagamento.html';
+      });
+
+      // Abrir modal
+      $('#modal-roteiro').css('display','flex');
+    });
+
+    // Fechar modal
+    $('#fechar-modal-roteiro').on('click', function(){
+      $('#modal-roteiro').hide();
+    });
+
+    // Fechar ao clicar fora
+    $('#modal-roteiro').on('click', function(e){
+      if(e.target === this) $(this).hide();
     });
   });
 </script>
+
 
 </body>
 </html>

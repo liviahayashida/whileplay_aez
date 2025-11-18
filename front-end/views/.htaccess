@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Rota curta para homepage1.html
+RewriteRule ^home/?$ homepage1.html [L]
+RewriteRule ^login/?$ login.html [L]
+RewriteRule ^cadastro/?$ cadastro.html [L]
