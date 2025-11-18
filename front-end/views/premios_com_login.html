@@ -4,18 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prêmios Cinematográficos</title>
-  <!-- Fonte Adamina -->
-   <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
+  
   <!-- Ícones do Material Design -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Fonte Adamina -->
+  <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="../public/MEDIA/FONTE/creato_display/CreatoDisplay-ExtraBoldItalic.otf" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
   <style>
-    /* BÁSICO */
-      /* RESET BÁSICO */
+    @charset "utf-8";
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+     /* RESET BÁSICO */
       * {
         margin: 0;
         padding: 0;
@@ -59,6 +62,41 @@
         background-color: rgba(255, 255, 255, 0.2);
         border-radius: 8px;
       }
+    .search-box {
+      background: white;
+      border-radius: 30px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      padding: 10px;
+      font-size: 18px;
+      font-family: 'Adamina', serif;
+    }
+    .search-box span {
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    .login-button {
+      background-color: white;
+      color: #007bff;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-family: 'Adamina', serif;
+    }
+    .login-button:hover {
+      background-color: #e0e0e0;
+    }
+
     .container {
       max-width: 1440px;
       margin: 0 auto;
@@ -80,7 +118,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('/Whileplay/VIEWS/MEDIA/imagens/banner-principal.jpg');
+      background-image: url('');
       background-size: cover;
       background-position: center;
       filter: brightness(0.4);
@@ -256,18 +294,16 @@
         flex: 0 0 250px;
       }
     }
-    body {
-    font-family: 'Adamina', serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    }
 
+    body {
+      margin: 0;
+      font-family: 'Adamina', serif;
+    }
     header {
       width: 100%;
       margin: 0;
       padding: 0;
     }
-
     .header-container {
   background-image: url('../public/MEDIA/imagens/background.png');
       background-size: cover;
@@ -275,7 +311,6 @@
       padding: 40px 0;
       width: 100%;
     }
-
     .navbar {
       display: flex;
       justify-content: space-around;
@@ -284,66 +319,27 @@
       gap: 20px;
       padding: 0 20px;
     }
-
-    .navbar a {
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px 15px;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .navbar a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-    }
-
+    /* Removido bloco duplicado de .navbar a e .navbar a:hover para evitar conflito de CSS */
     .search-box {
       background: white;
       border-radius: 30px;
-      padding: 10px 15px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
     }
-
     .search-box input {
       border: none;
       outline: none;
-      padding: 8px;
-      font-size: 16px;
+      padding: 10px;
+      font-size: 18px;
       font-family: 'Adamina', serif;
     }
-
     .search-box span {
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       margin-left: 8px;
     }
-
-    .user-profile-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .subscription-badge {
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 5px 10px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: #FFD700; /* Cor dourada para indicar premium */
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .subscription-badge .material-icons {
-      font-size: 16px;
-    }
-
-    .profile-icon {
+        .profile-icon {
       background-color: white;
       color: #007bff;
       width: 40px;
@@ -355,7 +351,6 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      position: relative;
     }
 
     .profile-icon:hover {
@@ -367,26 +362,7 @@
       font-size: 24px;
     }
     
-    .verified-badge {
-      position: absolute;
-      bottom: -5px;
-      right: -5px;
-      background-color: #FFD700;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid white;
-    }
-    
-    .verified-badge .material-icons {
-      font-size: 14px;
-      color: #333;
-    }
-    
-    /* Estilo para o dropdown do perfil */
+    /* Estilo para o dropdown do perfil (opcional) */
     .profile-dropdown {
       position: relative;
       display: inline-block;
@@ -397,7 +373,7 @@
       position: absolute;
       right: 0;
       background-color: white;
-      min-width: 200px;
+      min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
       border-radius: 8px;
@@ -418,30 +394,13 @@
       border-radius: 0;
     }
     
-    .dropdown-content .premium-option {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .dropdown-content .premium-option .material-icons {
-      color: #FFD700;
-      font-size: 16px;
-    }
-    
     .profile-dropdown:hover .dropdown-content {
       display: block;
-    }
-    
-    .dropdown-divider {
-      height: 1px;
-      background-color: #e0e0e0;
-      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-   <header>
+      <header>
     <div class="header-container">
       <div class="navbar">
         <div class="search-box">
@@ -449,36 +408,20 @@
           <span onclick="clearSearch()">❌</span>
         </div>
 
-        <a href="sobrenos_com_assinatura.html">Sobre Nós</a>
-        <a href="premios_com_assinatura.html">Prêmios</a>
-        <a href="roteiros_com_assinatura.html">Roteiro</a>
-        <a href="homepage2_com_assinatura.html">Homepage</a>
-        <a href="../../back-end/views/pagamento_list.php">Biblioteca</a>
-        <a href="personagens_com_assinatura.html">Personagens</a>
-        <a href="../../back-end/views/publicar_form.php">Publicar</a>
-
+  <a href="sobrenos_com_login.html">Sobre Nós</a>
+  <a href="premios_com_login.html">Prêmios</a>
+  <a href="roteiros_com_login.html">Roteiro</a>
+  <a href="homepage2_com_login.html">Homepage</a>
+  <a href="Personagens_com_login.html">Personagens</a>
+  <a href="assinatura.html">Assinatura</a>
+        
+        <!-- Substituindo o botão de login por um ícone de perfil -->
         <div class="profile-dropdown">
-          <div class="profile-icon" onclick="window.location.href='../../back-end/views/perfil_form.php'">
-              <span class="material-icons">person</span>
-              <div class="verified-badge">
-                <span class="material-icons">verified</span>
-              </div>
+          <div class="profile-icon">
+            <span class="material-icons">person</span>
           </div>
           <div class="dropdown-content">
-            <a href="#" class="premium-option">
-              <span class="material-icons">verified</span>
-              Membro Premium
-            </a>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      function clearSearch() {
-        document.getElementById('searchInput').value = '';
-      }
-    </script>
         </div>
       </div>
     </div>
@@ -576,7 +519,7 @@
           <div class="award-card-content">
             <div class="award-category">Leading Actress</div>
             <div class="award-winner">Mikey Madison</div>
-            <div class="award-details">Atuou no papel de Laney, em seu último roteiro comprado pelo site.</div>
+            <div class="award-details">Atuou no papel de Laney, em seu último projeto comprado pelo site.</div>
           </div>
         </div>
         <div class="award-card">
@@ -584,7 +527,7 @@
           <div class="award-card-content">
             <div class="award-category">Supporting Actor</div>
             <div class="award-winner">Anthony Hopkins</div>
-            <div class="award-details">Atuou o papel de Jhorsey em seu último filme "A espera de uma esperança".</div>
+            <div class="award-details">Atuou o papel de Jhorsey em seu último projeto "A espera de uma esperança".</div>
           </div>
         </div>
         <div class="award-card">

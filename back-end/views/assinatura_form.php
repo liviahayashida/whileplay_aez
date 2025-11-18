@@ -172,7 +172,7 @@
     </form>
 
     <div class="voltar">
-      <a href="../homepage2_com_login.html">Voltar</a>
+      <a href="../../front-end/views/homepage2_com_login.html">Voltar</a>
     </div>
 
   </div>
