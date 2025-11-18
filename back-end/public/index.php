@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../controllers/AssinaturaController.php';
+require_once __DIR__ . '/../controllers/PagamentoController.php';
+
 
 // Captura o caminho da URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -83,14 +85,18 @@ switch ($rota) {
     $controller->atualizar();
     break;
 
-       default:
-        header('Content-Type: application/json');
-        echo json_encode([
-            'error' => 'Página não encontrada',
-            'uri_recebida' => $uri,
-            'rota_calculada' => $rota,
-            'timestamp' => date('Y-m-d H:i:s')
-        ]);
-        break;
+    //Pagamento
+            case '/pagamento-form':
+    (new PagamentoController())->showForm();
+    break;
+
+case '/save-pagamento':
+    (new PagamentoController())->savePagamento();
+    break;
+
+case '/list-pagamentos':
+    (new PagamentoController())->listPagamentos();
+    break;
+
 
 }
