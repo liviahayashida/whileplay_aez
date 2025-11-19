@@ -239,6 +239,7 @@ if (isset($_GET['id'])) {
             justify-content: center;
             align-items: center;
             padding: 40px 20px;
+            font-family: "Adamina", serif;
         }
         .form-panel {
             background: rgb(63, 63, 63);
