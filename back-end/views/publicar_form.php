@@ -62,9 +62,14 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $editing ? 'Editar Publicação' : 'Nova Publicação'; ?></title>
-    <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
+  <!-- Ícones do Material Design -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
+  
 
     <style>
         /* CSS Base - Adaptado da sua referência */
@@ -114,27 +119,50 @@ if (isset($_GET['id'])) {
             border-radius: 8px;
         }
         /* BARRA DE PESQUISA */
-        .search-box {
-          background: white;
-          border-radius: 30px;
-          padding: 10px 15px;
-          display: flex;
-          align-items: center;
-        }
+    .search-box {
+    background: #fff;
+    border-radius: 40px;
+    padding: 1px 16px;     
+    width: 280px;    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+}
 
-        .search-box input {
-          border: none;
-          outline: none;
-          padding: 8px;
-          font-size: 16px;
-          font-family: 'Poppins', sans-serif;
-        }
 
-        .search-box span {
-          font-size: 18px;
-          cursor: pointer;
-          margin-left: 8px;
-        }
+.search-box input {
+    height: 40px;  
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 14px; 
+    color: #444;
+    flex: 1;
+    font-family: "Adamina", serif;
+}
+
+.search-box input::placeholder {
+    color: #666;
+    opacity: 0.8;
+}
+
+.search-box .clear-btn {
+    background: none;
+    border: none;
+    font-size: 16px;  
+    cursor: pointer;
+    color: #ff4d7b;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    transition: 0.2s;
+}
+
+.search-box .clear-btn:hover {
+    transform: scale(1.15);
+}
+
         .profile-icon {
             background-color: white;
             color: #007bff;
@@ -373,6 +401,12 @@ if (isset($_GET['id'])) {
         margin-top: 20px;
         font-size: 14px;
     }
+
+    .search-box input {
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+}
     </style>
 </head>
 <body>
@@ -380,8 +414,8 @@ if (isset($_GET['id'])) {
         <div class="header-container">
             <div class="navbar">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Pesquisar">
-                    <span onclick="clearSearch()">❌</span>
+                <input type="text" id="searchInput" placeholder="Pesquisar">
+                <span onclick="clearSearch()">❌</span>
                 </div>
 
                 <a href="../../front-end/views/sobrenos_com_assinatura.html">Sobre Nós</a>
